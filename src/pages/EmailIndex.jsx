@@ -8,20 +8,29 @@ import { useEffect, useState} from "react"
 
 export function EmailIndex() {
     const [emails, setEmeils] = useState(null)
+    const [ filterBy, setFilterBy ] = useState(emailService.defoultFilter())
 
-    async function onLoad() {
-        const t = await emailService.query()
+    async function loadEmail() {
+        const t = await emailService.query(filterBy)
         setEmeils( t)
-        console.log("load")
+       // console.log("load")
     }
 
     useEffect(  () =>  {
-        onLoad()
+        loadEmail()
     },[])
+
+    useEffect(() => {
+        loadEmail()
+    }, [filterBy])
+
+    function onFilterBy(filterBy){
+        setFilterBy(filterBy)
+    }
     
     if(!emails) return <div>Loading...</div>
     return<div>  
-        <MailFilter/>
+        <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
         <MailList emails = {emails}/>
      </div>
   

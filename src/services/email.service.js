@@ -6,23 +6,31 @@ export const emailService = {
     save,
     remove,
     getById,
+    defoultFilter
 }
 
 const STORAGE_KEY = 'emails'
 
-_createEmails()
+//_createEmails()
 
-async function query() {
+async function query(filterBy) {
     var emails = await storageService.query(STORAGE_KEY)
-    // if (filterBy) {
-    //     var { type, maxBatteryStatus, minBatteryStatus, model } = filterBy
-    //     maxBatteryStatus = maxBatteryStatus || Infinity
-    //     minBatteryStatus = minBatteryStatus || 0
-    //     emails = emails.filter(email => email.type.toLowerCase().includes(type.toLowerCase()) && email.model.toLowerCase().includes(model.toLowerCase())
-    //         && (email.batteryStatus < maxBatteryStatus)
-    //         && email.batteryStatus > minBatteryStatus)
-    // }
+    if (filterBy) {
+        var { status} = filterBy
+        emails = emails.filter(email => email.status === status)
+
+        // var { type, maxBatteryStatus, minBatteryStatus, model } = filterBy
+        // maxBatteryStatus = maxBatteryStatus || Infinity
+        // minBatteryStatus = minBatteryStatus || 0
+        // emails = emails.filter(email => email.type.toLowerCase().includes(type.toLowerCase()) && email.model.toLowerCase().includes(model.toLowerCase())
+        //     && (email.batteryStatus < maxBatteryStatus)
+        //     && email.batteryStatus > minBatteryStatus)
+    }
     return emails
+}
+
+function defoultFilter(){
+    return {status : "inbox"}
 }
 
 function getById(id) {
