@@ -1,25 +1,25 @@
+import { HashRouter as Router, Route, Routes } from "react-router-dom"
+
 
 import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { AppHeader } from "./cmps/AppHeader"
+import { EmailIndex } from "./pages/EmailIndex"
+
+
 export function App() {
 
     return (
-        <section className='main-app'>
-            <header className="app-header">
-                <section className="container">
-                    <h1>Log111</h1>
-                </section>
-            </header>
-
-            <main className='container'>
-                <Home />
-            </main>
-
-            <footer>
-                <section className="container">
-                    robotRights 2023 &copy;
-                </section>
-            </footer>
-        </section>
+    <Router>
+        <AppHeader/>
+        <main>
+            <Routes>
+                <Route path="/EmailIndex" element={<EmailIndex />} />   
+                <Route path="/" element={<Home />} />
+                <Route path="/About" element={<About />} />
+            </Routes>
+        </main>
+    </Router>
 
 
     )
