@@ -8,11 +8,9 @@ export function MailFilter({filterBy,onFilterBy}){
         onFilterBy(filterByToEdit)
     }, [filterByToEdit])
 
-    // function handleChange({ target }) {
-    //     const { type, name } = target
-    //     const value = type === 'number' ? +target.value : target.value
-    //     setFilterByToEdit(prev => ({ ...prev, [name]: value }))
-    // }
+    function handleChange({ target }) {
+        setFilterByToEdit(prev => ({ ...prev, ["txt"]: target.value }))
+    }
 
     function onCategorySelect(cat){
         setFilterByToEdit(prev => ({ ...prev, ["status"]: cat}))
@@ -21,6 +19,13 @@ export function MailFilter({filterBy,onFilterBy}){
 
 
     return <section className="mail-filter">
+        <label htmlFor="txt">search</label>
+     <input 
+         value={filterByToEdit.txt} 
+         onChange={handleChange}
+         id="model" 
+         name="model" 
+         type="text" />
         <button onClick = {() => onCategorySelect("inbox")}>inbox</button>
         <button onClick = {() =>onCategorySelect("sent")}>sent</button>
     </section>

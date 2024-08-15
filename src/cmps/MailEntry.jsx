@@ -5,13 +5,12 @@ export function MailEntry({email}){
 
     console.log(email.sentAt)
     const d = new Date(email.sentAt)
-    // return <h1>ghfgfj</h1>
-    return <tr>
-    <th>{email.isStarred ? "yes" : "No"}</th>   
-    <th>{email.from}</th>
-    <th>{email.subject}</th>
-    <th>{`${months[d.getMonth()]} ${d.getDay()}`}</th>
-  </tr>
+    return <div>
+    <p1>{email.isStarred ? "yes" : "No"}</p1>   
+    <p1>{email.from}</p1>
+    <p1>{email.subject}</p1>
+    <p1>{`${months[d.getMonth()]} ${d.getDay()}`}</p1>
+    </div>
 }
 
 // { _id: 'r4', subject: 'ny', body: "la ha ha", isRead: false, isStarred: false, sentAt : 1551133930594,
