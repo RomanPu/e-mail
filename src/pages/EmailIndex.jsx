@@ -1,13 +1,29 @@
 import { emailService } from "../services/email.service"
+import { MailList } from '../cmps/MailList'
+import { MailFilter } from '../cmps/MailFilter'
+
+import { useEffect, useState} from "react"
+
+
 
 export function EmailIndex() {
+    const [emails, setEmeils] = useState(null)
 
-    async function load() {
+    async function onLoad() {
         const t = await emailService.query()
-        console.log(t)
+        setEmeils( t)
+        console.log("load")
     }
 
-    load()
-
-    return <h1>Hy</h1>
+    useEffect(  () =>  {
+        onLoad()
+    },[])
+    
+    if(!emails) return <div>Loading...</div>
+    return<div>  
+        <MailFilter/>
+        <MailList emails = {emails}/>
+     </div>
+  
 }
+    

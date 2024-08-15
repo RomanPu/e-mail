@@ -12,7 +12,7 @@ const STORAGE_KEY = 'emails'
 
 _createEmails()
 
-async function query(filterBy) {
+async function query() {
     var emails = await storageService.query(STORAGE_KEY)
     // if (filterBy) {
     //     var { type, maxBatteryStatus, minBatteryStatus, model } = filterBy
@@ -47,8 +47,14 @@ function _createEmails() {
     let emails = utilService.loadFromStorage(STORAGE_KEY)
     if (!emails || !emails.length) {
         emails = [
-            { _id: 'r2', subject: 'hy', body: "ha ha ha", type: 'Cooking', isRead: false, isStarred: false, sentAt : 1551133930594,
+            { _id: 'r1', subject: 'hy', body: "ha ha ha", isRead: false, isStarred: false, sentAt : 1551133930594,
             removedAt : null, from : "momo@shalomo.com", to: "terry@createBrowserHistory.com", status : "inbox"},
+            { _id: 'r2', subject: 'by', body: "ha ", isRead: false, isStarred: false, sentAt : 1551133930594,
+                removedAt : null, from : "momo@shalomo.com", to: "terry@createBrowserHistory.com", status : "inbox"},
+                { _id: 'r3', subject: 'dy', body: "ha ha ", isRead: false, isStarred: false, sentAt : 1551133930594,
+                    removedAt : null, from : "momo@shalomo.com", to: "terry@createBrowserHistory.com", status : "sent"},
+                    { _id: 'r4', subject: 'ny', body: "la ha ha", isRead: false, isStarred: false, sentAt : 1551133930594,
+                        removedAt : null, from : "momo@shalomo.com", to: "terry@createBrowserHistory.com", status : "sent"},
 
         ]
         utilService.saveToStorage(STORAGE_KEY, emails)
