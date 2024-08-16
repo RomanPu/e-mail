@@ -9,6 +9,7 @@ import { useParams } from "react-router"
 //     removedAt : null, from : "momo@shalomo.com", to: "terry@createBrowserHistory.com", status : "inbox"},
 export function MailDeteils(){
     const { id } = useParams()
+    const [stateId, setId] = useState(null)
     const [deteils, setDeteils] = useState(null)
 
     async function loadEmail(){
@@ -17,8 +18,18 @@ export function MailDeteils(){
     }
 
     useEffect(  () =>  {
-        loadEmail()
+        //const { id } = useParams()
+        setId(id)
     },[])
+
+    useEffect(  () =>  {
+        loadEmail()
+    },[id])
+
+    function handleClick() {
+        console.log('Link clicked!');
+        setDeteils(null)
+      }
 
     if(!deteils) return <h1>wait for it</h1>
     return <section>
@@ -26,6 +37,6 @@ export function MailDeteils(){
         <h1>to {deteils.to}</h1>
         <h1>subject {deteils.subject}</h1>
         <h1>subject {deteils.body}</h1>
-        <Link to={`/EmailIndex`} >back</Link>
+        <Link to={`/EmailIndex`} onClick={handleClick} >back</Link>
     </section>
 }

@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service"
 import { MailList } from '../cmps/MailList'
 import { MailFilter } from '../cmps/MailFilter'
+import { MailDeteils } from "./MailDeteils";
 
 import { useEffect, useState} from "react"
 
@@ -32,6 +33,7 @@ export function EmailIndex() {
     return<div>  
         <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
         <MailList emails = {emails}/>
+        <MailDeteils />
      </div>
   
 }
