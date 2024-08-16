@@ -12,22 +12,14 @@ export function MailFilter({filterBy,onFilterBy}){
         setFilterByToEdit(prev => ({ ...prev, ["txt"]: target.value }))
     }
 
-    function onCategorySelect(cat){
-        setFilterByToEdit(prev => ({ ...prev, ["status"]: cat}))
-        //console.log(filterByToEdit)
-    }
-
-
     return <section className="mail-filter">
         <label htmlFor="txt">search</label>
-     <input 
+        <input 
          value={filterByToEdit.txt} 
          onChange={handleChange}
          id="model" 
          name="model" 
          type="text" />
-        <button onClick = {() => onCategorySelect("inbox")}>inbox</button>
-        <button onClick = {() =>onCategorySelect("sent")}>sent</button>
     </section>
 
     
