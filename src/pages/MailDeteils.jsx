@@ -15,7 +15,7 @@ export function MailDeteils(){
     const months = ["January", "February", "March",
         "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    const d = new Date(deteils.sentAt)
+    // const d = new Date(deteils.sentAt)
 
     async function loadEmail(){
     const mail = await emailService.getById(id)
@@ -48,7 +48,7 @@ export function MailDeteils(){
       </div>
         <div className="mail-info">
            <span>{deteils.from}</span>
-           <span>{`${months[d.getMonth()]} ${d.getDay()}`}</span>
+           {/* <span>{`${months[d.getMonth()]} ${d.getDay()}`}</span> */}
         </div>
         
         <div className="mail-body">{deteils.body}</div>
