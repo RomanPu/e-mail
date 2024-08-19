@@ -38,13 +38,10 @@ export function EmailIndex() {
 
       function onFolderBy(filterBy){
         setFilterBy(prev => ({ ...prev, ["status"]: filterBy.status}))
-        //setFilterBy(filterBy)
-        console.log("test")
     }
     
     function onFilterBy(filterBy){
         setFilterBy(prev => ({ ...prev, ["txt"]: filterBy.txt}))
-        //setFilterBy(filterBy)
     }
 
     function onHandleClick(id, action, ev){
