@@ -31,7 +31,7 @@ export function MailDeteils(){
         setDeteils(null)
       }
 
-    if(!deteils) return <h1>wait for it</h1>
+    if(!deteils) return 
     return <section>
         <h1>from {deteils.from}</h1>
         <h1>to {deteils.to}</h1>
