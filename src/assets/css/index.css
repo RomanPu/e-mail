@@ -6,10 +6,12 @@
 
 /* Pages */
 @import "./pages/home.css";
+@import "./pages/email-page.css";
 
 /* Components */
 @import "./cmps/app-header.css";
 @import "./cmps/mail-list.css";
+
 
 
 
