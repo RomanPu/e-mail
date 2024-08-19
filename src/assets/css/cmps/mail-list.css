@@ -22,10 +22,12 @@
     margin-left: 10px; 
     border: 1px solid #131212;
     display: flex;
+    font-weight: bold;
 }
 
 
 .email-from{
+    padding-left: 50px;
     flex: 0 0 100%px;
 }
 
@@ -37,6 +39,11 @@
 .email-date{
     flex: 0 0 150px;
 }
+
+.entry-read{
+    background-color: rgb(198, 253, 253);
+    font-weight:lighter;
+ }
 
 
 

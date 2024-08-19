@@ -12,6 +12,11 @@ export function MailDeteils(){
     const [stateId, setId] = useState(null)
     const [deteils, setDeteils] = useState(null)
 
+    const months = ["January", "February", "March",
+        "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const d = new Date(deteils.sentAt)
+
     async function loadEmail(){
     const mail = await emailService.getById(id)
     setDeteils(mail)
@@ -23,6 +28,7 @@ export function MailDeteils(){
     },[])
 
     useEffect(  () =>  {
+       
         loadEmail()
     },[id])
 
@@ -32,11 +38,21 @@ export function MailDeteils(){
       }
 
     if(!deteils) return 
-    return <section>
-        <h1>from {deteils.from}</h1>
-        <h1>to {deteils.to}</h1>
-        <h1>subject {deteils.subject}</h1>
-        <h1>subject {deteils.body}</h1>
-        <Link to={`/EmailIndex`} onClick={handleClick} >back</Link>
+    return <section className="mail-deteils">
+      <div className="mail-header">
+        <h2>{deteils.subject}</h2>
+        <div className="mail-actions">
+        <Link to={`/EmailIndex`} onClick={handleClick} >close</Link>
+          <button>Delete</button>
+        </div>
+      </div>
+        <div className="mail-info">
+           <span>{deteils.from}</span>
+           <span>{`${months[d.getMonth()]} ${d.getDay()}`}</span>
+        </div>
+        
+        <div className="mail-body">{deteils.body}</div>
+        
+        
     </section>
 }

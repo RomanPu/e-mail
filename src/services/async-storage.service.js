@@ -22,7 +22,7 @@ function get(entityType, entityId) {
 function post(entityType, newEntity) {
     newEntity = { ...newEntity }
     newEntity.id = _makeId()
-    return query(entityType).then(entities => {
+    return query(entityType,5).then(entities => {
         entities.push(newEntity)
         _save(entityType, entities)
         return newEntity
@@ -30,7 +30,7 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
-    return query(entityType).then(entities => {
+    return query(entityType, 5).then(entities => {
         const idx = entities.findIndex(entity => entity.id === updatedEntity.id)
         if (idx < 0) throw new Error(`Update failed, cannot find entity with id: ${updatedEntity.id} in: ${entityType}`)
         entities.splice(idx, 1, updatedEntity)
@@ -52,6 +52,7 @@ function remove(entityType, entityId) {
 
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
+    console.log("finised save")
 }
 
 function _makeId(length = 5) {

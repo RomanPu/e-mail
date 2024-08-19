@@ -1,0 +1,75 @@
+.emails-page{
+   display: grid;
+   grid-template-areas: 
+   "logo filter . . ."
+   "folder mail-list mail-list mail-list mail-list"
+   "folder mail-list mail-list mail-list mail-list"
+   "folder mail-deteils mail-deteils mail-deteils mail-deteils"
+   "folder mail-deteils mail-deteils mail-deteils mail-deteils";
+   grid-template-columns: 1fr 3fr 3fr 3fr 3fr; 
+   grid-template-rows:   50px auto 1fr 1fr; 
+   /* gap: 10px;  */
+   width: 100vw;
+   height: 100vh;
+}
+
+.logo{
+   grid-area: logo;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: left;
+   width: auto;
+   height: auto;
+}
+
+.logo img{
+   width: 30px;
+   height: 30px;
+}
+
+
+.mail-list{
+   grid-area: mail-list;
+}
+
+.mail-filter{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   grid-area: filter;
+}
+
+.folders{
+   margin-top: 30px;
+   grid-area: folder;
+   display: flex;
+   flex-direction: column;
+   /* background-color: white; */
+}
+
+
+.folders button{
+   /* margin-top: 10px; */
+   background: none;
+   border: none;
+   color: black;
+   cursor: pointer;
+   font-weight: bold;
+   font-size: 20px;
+   /* //margin-left: 10px; */
+}
+
+.folders button:hover {
+   text-decoration: underline;
+ }
+
+.mail-deteils{
+   grid-area: mail-deteils;
+}
+.mail-list a{
+   color: black;
+   cursor: pointer;
+}
+
+
