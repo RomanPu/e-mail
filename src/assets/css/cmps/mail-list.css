@@ -1,3 +1,45 @@
 .mail-list{
-    color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  width: 100%;
+  border-collapse: collapse;
+  /* border: 1px solid #131212; */
+ /* // text-align: center;
+ //writing-mode: horizontal-tb; */
+  
 }
+
+/* .mail-list table, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+  } */
+
+.entry{
+    width: 100%;
+    margin-left: 10px; 
+    border: 1px solid #131212;
+    display: flex;
+}
+
+
+.email-from{
+    flex: 0 0 100%px;
+}
+
+.email-subject{
+    padding-left: 50px;
+    flex: 1;
+}
+
+.email-date{
+    flex: 0 0 150px;
+}
+
+
+
+
+
+

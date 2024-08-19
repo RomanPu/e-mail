@@ -3,14 +3,15 @@ export function MailEntry({email}){
     const months = ["January", "February", "March",
          "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    console.log(email.sentAt)
+    
     const d = new Date(email.sentAt)
-    return <div>
-    <p1>{email.isStarred ? "yes" : "No"}</p1>   
-    <p1>{email.from}</p1>
-    <p1>{email.subject}</p1>
-    <p1>{`${months[d.getMonth()]} ${d.getDay()}`}</p1>
-    </div>
+    console.log(d.getDay())
+    return <>
+    <td>{email.isStarred ? "yes" : "No"}</td>   
+    <td className = "email-from">{ email.from}</td>
+    <td className = "email-subject">{email.subject}</td>
+    <td className = "email-date">{`${months[d.getMonth()]}`+` ${d.getDay()}`}</td>
+    </>
 }
 
 // { _id: 'r4', subject: 'ny', body: "la ha ha", isRead: false, isStarred: false, sentAt : 1551133930594,

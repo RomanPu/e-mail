@@ -4,11 +4,11 @@ import { MailEntry } from './MailEntry';
 
 export function MailList({emails}){
     //console.log(emails)
-    return <table class="mail-list">
+    return <table className="mail-list">
                 
                 {emails.map(em => (
-                    <tr key={em.id}>
-                    <Link to={`/EmailIndex/${em.id}`}>
+                    <tr  key={em.id}>
+                    <Link className="entry" to={`/EmailIndex/${em.id}`}>
                         <MailEntry email={em} />
                     </Link>
                     </tr>
