@@ -15,6 +15,7 @@ export function EmailIndex() {
     const [emails, setEmeils] = useState(null)
     const [ filterBy, setFilterBy ] = useState(emailService.defoultFilter())
     const [ clickChange, setClickChange ] = useState(false)
+    const [ mode, setModeChange ] = useState("list")
 
     async function loadEmail() {
         const t = await emailService.query(filterBy)
@@ -24,6 +25,7 @@ export function EmailIndex() {
     }
 
     useEffect(  () =>  {
+        setModeChange("list")
         loadEmail()
     },[])
 
@@ -45,16 +47,23 @@ export function EmailIndex() {
     }
 
     function onHandleClick(id, action, ev){
-        //ev.stopPropagation()
+       // ev.stopPropagation()
         setAction(id, action)
         console.log("click",id, action)
     }
 
-    async function setAction(id, action) {
-        const t = await emailService.getById(id)
+    async function setAction(id, action) { 
+        if(action === "list") return setModeChange("list") 
+
+        var t = await emailService.getById(id)
         console.log(action)
         if(action === "read") t.isRead = true
         if(action === "star") t.isStarred = !t.isStarred
+        if(action === "deteils") {
+            t.isRead = true
+            setModeChange("deteils") 
+        }
+        
 
         emailService.save(t)
         .then(() => {
@@ -77,8 +86,10 @@ export function EmailIndex() {
         </div>  
         <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
         <Folders filterBy={filterBy} onFolderBy={onFolderBy}/>
-        <MailList emails = {emails} handleClick={onHandleClick} />
-        <MailDeteils />
+        <div className="mail-section">
+            {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}
+            {mode === "deteils" && <MailDeteils handleClick={onHandleClick}/>}
+        </div>
      </div>
   
 }

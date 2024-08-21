@@ -17,7 +17,7 @@ export function MailList({emails, handleClick}){
                 <tr className={`entry ${em.isRead && "entry-read"}`}  key={em.id}>
                     <td className = "star" onClick ={(ev) => handleClick(em.id, "star", ev)}>
                     {em.isStarred  ? "yes" : "No"}</td>
-                    <Link onClick=  {(ev) => handleClick(em.id, "read", ev)}
+                    <Link onClick=  {(ev) => handleClick(em.id, "deteils", ev)}
                      to={`/EmailIndex/${em.id}`}>
                         <MailEntry email={em} handleEntryClick={handleClick}/>
                     </Link>
