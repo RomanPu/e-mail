@@ -15,9 +15,10 @@ _createEmails()
 
 async function query(filterBy) {
     var emails = await storageService.query(STORAGE_KEY)
-    if (filterBy && filterBy.status != "all"  ) {
+    if (filterBy) {
+        // if (filterBy.status === "all") return emails
         var { status , txt} = filterBy
-        emails = emails.filter(email => email.status === status)
+        if (status !== "all") emails = emails.filter(email => email.status === status)
         if (txt)  emails = emails.filter(email => email.subject.toLowerCase().includes(txt.toLowerCase())
         || email.body.toLowerCase().includes(txt.toLowerCase()))
 

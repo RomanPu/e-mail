@@ -40,10 +40,12 @@ export function EmailIndex() {
 
       function onFolderBy(filterBy){
         setFilterBy(prev => ({ ...prev, ["status"]: filterBy.status}))
+        setModeChange("list")
     }
     
     function onFilterBy(filterBy){
         setFilterBy(prev => ({ ...prev, ["txt"]: filterBy.txt}))
+        //setModeChange("list")
     }
 
     function onHandleClick(id, action, ev){
