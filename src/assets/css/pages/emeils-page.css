@@ -2,8 +2,8 @@
    display: grid;
    grid-template-areas: 
    "logo filter "
-   "folder  mail "
-   "folder  mail ";
+   ".  mail "
+   ".  mail ";
    grid-template-columns: auto  1fr; 
    grid-template-rows:   50px  1fr;
    /* gap: 10px;  */

@@ -38,13 +38,14 @@ export function EmailIndex() {
     //     setFilterBy(filterBy)
     // }
 
-      function onFolderBy(filterBy){
-        setFilterBy(prev => ({ ...prev, ["status"]: filterBy.status}))
-        setModeChange("list")
-    }
+    //   function onFolderBy(filterBy){
+    //     setFilterBy(prev => (filterBy))
+    //     setModeChange("list")
+    // }
     
     function onFilterBy(filterBy){
-        setFilterBy(prev => ({ ...prev, ["txt"]: filterBy.txt}))
+        console.log("index", filterBy)
+        setFilterBy(filterBy)
         //setModeChange("list")
     }
 
@@ -88,7 +89,7 @@ export function EmailIndex() {
             <h1>gMail</h1>
         </div>  
         <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
-        <Folders filterBy={filterBy} onFolderBy={onFolderBy}/>
+        {/* <Folders filterBy={filterBy} onFolderBy={onFolderBy}/> */}
         <div className="mail-section">
             {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}
             {mode === "deteils" && <MailDeteils handleClick={onHandleClick}/>}

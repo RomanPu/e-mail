@@ -5,11 +5,19 @@ export function MailFilter({filterBy,onFilterBy}){
     const [ filterByToEdit, setFilterByToEdit ] = useState(filterBy)
 
     useEffect(() => {
+        // console.log( "filter",filterByToEdit)
+        onFilterBy(filterBy)
+    }, [])
+
+    useEffect(() => {
+        console.log( "filter",filterByToEdit)
         onFilterBy(filterByToEdit)
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        setFilterByToEdit(prev => ({ ...prev, ["txt"]: target.value }))
+        const { name, value } = target;
+        // console.log(name, value)
+        setFilterByToEdit(prev => ({ ...prev, [name]: value }))
     }
 
     return <section className="mail-filter">
@@ -18,8 +26,19 @@ export function MailFilter({filterBy,onFilterBy}){
          value={filterByToEdit.txt} 
          onChange={handleChange}
          id="model" 
-         name="model" 
+         name="txt" 
          type="text" />
+          {/* <label htmlFor="readStatus">Read Status</label> */}
+        <select
+        value={filterByToEdit.readStatus}
+        onChange={handleChange}
+        id="readStatus"
+        name="readStatus"
+      >
+        <option value="all">All</option>
+        <option value="read">Read</option>
+        <option value="unread">Unread</option>
+      </select>
     </section>
 
     

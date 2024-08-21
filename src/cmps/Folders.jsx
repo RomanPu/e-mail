@@ -5,6 +5,11 @@ export function Folders({filterBy, onFolderBy}){
     const [ filterByToEdit, setFilterByToEdit ] = useState(filterBy)
 
     useEffect(() => {
+        // console.log( "filter",filterByToEdit)
+        setFilterByToEdit(filterBy)
+    }, [])
+
+    useEffect(() => {
         onFolderBy(filterByToEdit)
     }, [filterByToEdit])
 
