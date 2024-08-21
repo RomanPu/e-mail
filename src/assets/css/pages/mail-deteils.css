@@ -22,13 +22,23 @@
     font-size: 24px;
   }
   
-  .mail-actions button ,a {
+ a.backToIndex {
     background: none;
     border: none;
     color: #007bff;
     cursor: pointer;
     margin-left: 10px;
   }
+  
+
+  button.delete-from-deteils {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
   
   .mail-actions button:hover {
     text-decoration: underline;

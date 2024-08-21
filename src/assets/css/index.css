@@ -5,8 +5,8 @@
 @import "basics/animations.css";
 
 /* Pages */
-@import "./pages/home.css";
 @import "./pages/emeils-page.css";
+@import "./pages/home.css";
 @import "./pages/mail-deteils.css";
 
 /* Components */

@@ -14,9 +14,9 @@ export function MailEntry({email, handleEntryClicks}){
 
     
     return <>   
-    <td className = "email-from">{ email.from}</td>
-    <td className = "email-subject">{email.subject}</td>
-    <td className = "email-date">{`${months[d.getMonth()]}`+` ${d.getDay()}`}</td>
+    <div className = "email-from">{ email.from}</div>
+    <div className = "email-subject">{email.subject}</div>
+    <div className = "email-date">{`${months[d.getMonth()]}`+` ${d.getDay()}`}</div>
     </>
 }
 

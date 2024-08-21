@@ -3,6 +3,8 @@ import { MailEntry } from './MailEntry';
 
 import imgFullStarUrl from '../assets/imgs/full-star.png'
 import imgEmptyStarUrl from '../assets/imgs/empty-star.png'
+import imgOpenEnvUrl from '../assets/imgs/envelope-open.png'
+import imgEnvUrl from '../assets/imgs/envelope.png'
 
 
 export function MailList({emails, handleClick}){
@@ -15,17 +17,22 @@ export function MailList({emails, handleClick}){
     // function handleEntryClicks(id, status) {
     //     handleClick(id, status) 
     //  }
-    return <table className="mail-list">               
+    return <ul className="mail-list">               
                 {emails.map(em => (
-                <tr className={`entry ${em.isRead && "entry-read"}`}  key={em.id}>
-                    <td className = "star" onClick ={(ev) => handleClick(em.id, "star", ev)}>
-                    <img src={em.isStarred  ? imgFullStarUrl : imgEmptyStarUrl} alt="" /> </td>
+                <li className={`entry ${em.isRead && "entry-read"}`}  key={em.id}>
+                    <div className = "star" onClick ={(ev) => handleClick(em.id, "star", ev)}>
+                    <img src={em.isStarred  ? imgFullStarUrl : imgEmptyStarUrl} alt="" /> </div>
+
                     <Link className = "entry-data" onClick=  {(ev) => handleClick(em.id, "deteils", ev)}
                      to={`/EmailIndex/${em.id}`}>
                         <MailEntry email={em} handleEntryClick={handleClick}/>
                     </Link>
-                    <td><button onClick ={(ev) => handleClick(em.id, "delete", ev)}>X</button></td>
-                 </tr>                 
+
+                    <div className = "read" onClick ={(ev) => handleClick(em.id, "read", ev)}>
+                    <img src={!em.isRead ? imgEnvUrl : imgOpenEnvUrl} alt="" /> </div>
+
+                    <button onClick ={(ev) => handleClick(em.id, "delete", ev)}>X</button>
+                 </li>                 
                 ))}
-        </table>
+        </ul>
 }

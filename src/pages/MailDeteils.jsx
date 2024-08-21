@@ -43,8 +43,8 @@ export function MailDeteils({handleClick}){
       <div className="mail-header">
         <h2>{deteils.subject}</h2>
         <div className="mail-actions">
-        <Link to={`/EmailIndex`}  onClick={() =>onHandleClick(null, "list")} >close</Link>
-          <button  onClick={() =>onHandleClick(deteils.id, "delete-from-deteils")}>Delete</button>
+        <Link className = "backToIndex"to={`/EmailIndex`}  onClick={() =>onHandleClick(null, "list")} >close</Link>
+          <button className="delete-from-deteils" onClick={() =>onHandleClick(deteils.id, "delete-from-deteils")}>Delete</button>
         </div>
       </div>
         <div className="mail-info">

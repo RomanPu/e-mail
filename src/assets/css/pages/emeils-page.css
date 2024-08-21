@@ -6,9 +6,11 @@
    ".  mail ";
    grid-template-columns: auto  1fr; 
    grid-template-rows:   50px  1fr;
-   /* gap: 10px;  */
-   width: 100vw;
+   gap: 10px; 
    height: 100vh;
+}
+.emails-page a{
+   color: black;
 }
 
 .logo{
@@ -30,7 +32,10 @@
 
 .mail-section{
    grid-area: mail;
+   /* align-self: start;
+   justify-self: start; */
 }
+
 
 .mail-filter{
    display: flex;
@@ -40,33 +45,15 @@
    background-color: #f6f8fc;
 }
 
-.folders{
-   /* margin-top: 30px; */
-   grid-area: folder;
-   display: flex;
-   flex-direction: column;
-  background-color: #f6f8fc;
+.mail-filter select{
+   margin-inline-start: 1cm;
 }
 
 
-.folders button{
-   /* margin-top: 10px; */
-   background: none;
-   border: none;
+
+/* .mail-list a{
    color: black;
    cursor: pointer;
-   font-weight: bold;
-   font-size: 20px;
-   /* //margin-left: 10px; */
-}
-
-.folders button:hover {
-   text-decoration: underline;
- }
-
-.mail-list a{
-   color: black;
-   cursor: pointer;
-}
+} */
 
 
