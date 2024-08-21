@@ -70,10 +70,11 @@ export function EmailIndex() {
             setClickChange(prev => !prev)
          })
 
-         if(action === "delete"){
+         if(action === "delete" || action === "delete-from-deteils"){
          emailService.remove(id)
          .then(() => {
              setClickChange(prev => !prev)
+             if(action === "delete-from-deteils") setModeChange("list") 
           })
         }
     }

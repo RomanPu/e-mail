@@ -32,10 +32,10 @@ export function MailDeteils({handleClick}){
         loadEmail()
     },[id])
 
-    function onHandleClick() {
-        console.log('Link clicked!');
+    function onHandleClick(id, action) {
+        //console.log('Link clicked!');
         setDeteils(null)
-        handleClick(null, "list")
+        handleClick(id, action)
       }
 
     if(!deteils) return null
@@ -43,8 +43,8 @@ export function MailDeteils({handleClick}){
       <div className="mail-header">
         <h2>{deteils.subject}</h2>
         <div className="mail-actions">
-        <Link to={`/EmailIndex`} onClick={onHandleClick} >close</Link>
-          <button>Delete</button>
+        <Link to={`/EmailIndex`}  onClick={() =>onHandleClick(null, "list")} >close</Link>
+          <button  onClick={() =>onHandleClick(deteils.id, "delete-from-deteils")}>Delete</button>
         </div>
       </div>
         <div className="mail-info">
