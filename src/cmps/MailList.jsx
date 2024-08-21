@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
 import { MailEntry } from './MailEntry';
 
+import imgFullStarUrl from '../assets/imgs/full-star.png'
+import imgEmptyStarUrl from '../assets/imgs/empty-star.png'
+
 
 export function MailList({emails, handleClick}){
 
@@ -16,7 +19,7 @@ export function MailList({emails, handleClick}){
                 {emails.map(em => (
                 <tr className={`entry ${em.isRead && "entry-read"}`}  key={em.id}>
                     <td className = "star" onClick ={(ev) => handleClick(em.id, "star", ev)}>
-                    {em.isStarred  ? "yes" : "No"}</td>
+                    <img src={em.isStarred  ? imgFullStarUrl : imgEmptyStarUrl} alt="" /> </td>
                     <Link onClick=  {(ev) => handleClick(em.id, "deteils", ev)}
                      to={`/EmailIndex/${em.id}`}>
                         <MailEntry email={em} handleEntryClick={handleClick}/>

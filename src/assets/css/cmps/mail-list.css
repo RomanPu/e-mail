@@ -25,6 +25,11 @@
     font-weight: bold;
 }
 
+.entry img{
+    width: 1em;
+    height: 1em;
+}
+
 
 .email-from{
     padding-left: 50px;
