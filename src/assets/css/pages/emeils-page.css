@@ -1,11 +1,11 @@
 .emails-page{
    display: grid;
    grid-template-areas: 
-   "logo filter . "
-   "folder  mail mail"
-   "folder  mail mail";
-   grid-template-columns: auto auto 1fr; 
-   grid-template-rows:   50px auto 1fr;
+   "logo filter "
+   "folder  mail "
+   "folder  mail ";
+   grid-template-columns: auto  1fr; 
+   grid-template-rows:   50px  1fr;
    /* gap: 10px;  */
    width: 100vw;
    height: 100vh;
@@ -19,6 +19,7 @@
    justify-content: left;
    width: auto;
    height: auto;
+   background-color: #f6f8fc;
 }
 
 .logo img{
@@ -34,16 +35,17 @@
 .mail-filter{
    display: flex;
    align-items: center;
-   justify-content: center;
+   justify-content: left;
    grid-area: filter;
+   background-color: #f6f8fc;
 }
 
 .folders{
-   margin-top: 30px;
+   /* margin-top: 30px; */
    grid-area: folder;
    display: flex;
    flex-direction: column;
-   /* background-color: white; */
+  background-color: #f6f8fc;
 }
 
 
