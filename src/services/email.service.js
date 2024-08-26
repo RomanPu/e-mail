@@ -17,9 +17,11 @@ async function query(filterBy) {
     var emails = await storageService.query(STORAGE_KEY)
     if (filterBy) {
         // if (filterBy.status === "all") return emails
-        var { status , txt, readStatus} = filterBy
-        console.log("service" ,status , txt, readStatus)
-        // if (status !== "all") emails = emails.filter(email => email.status === status)
+        //var  = filterBy.filter
+        console.log("service......" ,filterBy)
+        var { folder , filter: { txt, readStatus}} = filterBy
+        
+        if (folder !== "all") emails = emails.filter(email => email.status === folder)
         if (readStatus !== "all") emails = emails.filter(email => email.isRead === 
             (readStatus === "read" ? true : false))
         if (txt)  emails = emails.filter(email => email.subject.toLowerCase().includes(txt.toLowerCase())
@@ -32,11 +34,12 @@ async function query(filterBy) {
         //     && (email.batteryStatus < maxBatteryStatus)
         //     && email.batteryStatus > minBatteryStatus)
     }
+    console.log("service......" ,emails)
     return emails
 }
 
 function defoultFilter(){
-    return {status : "all", txt : "", readStatus : "all"}
+    return {folder : "inbox", filter: {txt : "", readStatus : "all"}}
 }
 
 function getById(id) {

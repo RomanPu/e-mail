@@ -26,7 +26,7 @@ export function EmailIndex() {
 
     useEffect(  () =>  {
         setModeChange("list")
-        loadEmail()
+        //loadEmail()
     },[])
 
     useEffect(() => {
@@ -38,14 +38,20 @@ export function EmailIndex() {
     //     setFilterBy(filterBy)
     // }
 
-    //   function onFolderBy(filterBy){
-    //     setFilterBy(prev => (filterBy))
-    //     setModeChange("list")
-    // }
+      function onFolderBy(filterBy){
+
+        //reset on folder change
+
+        // console.log("folderBy", filterBy)
+        // let defoultFilter = emailService.defoultFilter()
+        // defoultFilter.folder = filterBy;
+        setFilterBy(prev => ({ ...prev, ["folder"]: filterBy }))
+        setModeChange("list")
+    }
     
     function onFilterBy(filterBy){
         console.log("index", filterBy)
-        setFilterBy(filterBy)
+        setFilterBy(prev => ({ ...prev, ["filter"]: filterBy }))
         //setModeChange("list")
     }
 
@@ -88,8 +94,8 @@ export function EmailIndex() {
             <img src={imgUrl} alt="" />
             <h1>gMail</h1>
         </div>  
-        <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
-        {/* <Folders filterBy={filterBy} onFolderBy={onFolderBy}/> */}
+        <MailFilter filterBy={filterBy.filter} onFilterBy={onFilterBy}/>
+        <Folders   filterBy={filterBy} onFolderBy={onFolderBy}/>
         <div className="mail-section">
             {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}
             {mode === "deteils" && <MailDeteils handleClick={onHandleClick}/>}

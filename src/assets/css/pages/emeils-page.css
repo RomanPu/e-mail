@@ -2,12 +2,13 @@
    display: grid;
    grid-template-areas: 
    "logo filter "
-   ".  mail "
-   ".  mail ";
+   "folder  mail "
+   "folder  mail ";
    grid-template-columns: auto  1fr; 
    grid-template-rows:   50px  1fr;
-   gap: 10px; 
+   /* //gap: 3px;  */
    height: 100vh;
+   background-color: #f6f8fc;
 }
 .emails-page a{
    color: black;
@@ -48,6 +49,24 @@
 .mail-filter select{
    margin-inline-start: 1cm;
 }
+
+.folders{
+   /* //margin-top: 30px; */
+   /* margin-top: 30px; */
+   grid-area: folder;
+   display: flex;
+   flex-direction: column;
+   /* background-color: white; */
+  background-color: #f6f8fc;
+}
+
+.folders > button {
+   background: none;
+   border: none;
+   color: black;
+   cursor: pointer;
+   margin-left: 10px;
+ }
 
 
 

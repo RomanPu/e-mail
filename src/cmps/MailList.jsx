@@ -8,9 +8,8 @@ import imgEnvUrl from '../assets/imgs/envelope.png'
 
 
 export function MailList({emails, handleClick}){
-
     // function handleClick(id){
-    //     console.log("dit",id)
+    //     C
     // }
     //console.log(emails)
 

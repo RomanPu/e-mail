@@ -14,7 +14,7 @@ export function Folders({filterBy, onFolderBy}){
     }, [filterByToEdit])
 
     function onCategorySelect(cat){
-        setFilterByToEdit(prev => ({ ...prev, ["status"]: cat}))
+        setFilterByToEdit(cat)
         //console.log(filterByToEdit)
     }
 

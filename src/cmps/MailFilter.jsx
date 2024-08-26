@@ -5,7 +5,7 @@ export function MailFilter({filterBy,onFilterBy}){
     const [ filterByToEdit, setFilterByToEdit ] = useState(filterBy)
 
     useEffect(() => {
-        // console.log( "filter",filterByToEdit)
+        console.log( "filter",filterByToEdit)
         onFilterBy(filterBy)
     }, [])
 
