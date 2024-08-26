@@ -46,7 +46,7 @@ export function EmailIndex() {
         // let defoultFilter = emailService.defoultFilter()
         // defoultFilter.folder = filterBy;
         setFilterBy(prev => ({ ...prev, ["folder"]: filterBy }))
-        setModeChange("l")
+        setModeChange("list")
     }
     
     function onFilterBy(filterBy){
