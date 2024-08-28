@@ -2,20 +2,8 @@ import { useEffect, useState } from "react"
 
 export function Folders({filterBy, onFolderBy}){
 
-    const [ filterByToEdit, setFilterByToEdit ] = useState(filterBy)
-
-    useEffect(() => {
-        // console.log( "filter",filterByToEdit)
-        setFilterByToEdit(filterBy)
-    }, [])
-
-    useEffect(() => {
-        onFolderBy(filterByToEdit)
-    }, [filterByToEdit])
-
     function onCategorySelect(cat){
-        setFilterByToEdit(cat)
-        //console.log(filterByToEdit)
+        onFolderBy(cat)
     }
 
 
@@ -25,3 +13,4 @@ export function Folders({filterBy, onFolderBy}){
                 <button onClick = {() =>onCategorySelect("sent")}>sent</button>
            </section>
 }
+

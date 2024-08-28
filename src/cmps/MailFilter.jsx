@@ -1,36 +1,26 @@
-import { useEffect, useState } from "react"
 
 export function MailFilter({filterBy,onFilterBy}){
 
-    const [ filterByToEdit, setFilterByToEdit ] = useState(filterBy)
+    //const [ filterByToEdit, setFilterByToEdit ] = useState(filterBy)
 
-    useEffect(() => {
-        console.log( "filter",filterByToEdit)
-        onFilterBy(filterBy)
-    }, [])
-
-    useEffect(() => {
-        console.log( "filter",filterByToEdit)
-        onFilterBy(filterByToEdit)
-    }, [filterByToEdit])
 
     function handleChange({ target }) {
         const { name, value } = target;
         // console.log(name, value)
-        setFilterByToEdit(prev => ({ ...prev, [name]: value }))
+        onFilterBy({ ...filterBy, [name]: value })
     }
 
     return <section className="mail-filter">
         <label htmlFor="txt">search</label>
         <input 
-         value={filterByToEdit.txt} 
+         value={filterBy.txt} 
          onChange={handleChange}
          id="model" 
          name="txt" 
          type="text" />
           {/* <label htmlFor="readStatus">Read Status</label> */}
         <select
-        value={filterByToEdit.readStatus}
+        value={filterBy.readStatus}
         onChange={handleChange}
         id="readStatus"
         name="readStatus"

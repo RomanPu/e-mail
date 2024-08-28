@@ -42,10 +42,11 @@ export function EmailIndex() {
 
         //reset on folder change
 
-        // console.log("folderBy", filterBy)
-        // let defoultFilter = emailService.defoultFilter()
-        // defoultFilter.folder = filterBy;
-        setFilterBy(prev => ({ ...prev, ["folder"]: filterBy }))
+        
+        let defoultFilter = emailService.defoultFilter()
+        defoultFilter.folder = filterBy;
+        console.log("folderBy",defoultFilter)
+        setFilterBy(defoultFilter)
         setModeChange("list")
     }
     
@@ -96,6 +97,7 @@ export function EmailIndex() {
         </div>  
         <MailFilter filterBy={filterBy.filter} onFilterBy={onFilterBy}/>
         <Folders   filterBy={filterBy.folder} onFolderBy={onFolderBy}/>
+        <Test test={filterBy.filter} />
         <div className="mail-section">
             {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}
             {mode === "deteils" && <MailDeteils handleClick={onHandleClick}/>}
@@ -104,3 +106,7 @@ export function EmailIndex() {
   
 }
     
+function Test({test}){
+    console.log("test",test)
+    return<div>test</div>
+}
