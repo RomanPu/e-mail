@@ -8,7 +8,8 @@ export const emailService = {
     getById,
     defoultFilter,
     newEmail,
-    finalizeMail
+    finalizeMail,
+    emailCount
 }
 
 const STORAGE_KEY = 'emails'
@@ -20,6 +21,10 @@ function newEmail(){
         removedAt : null, from : "momo@shalomo.com", to: '', status : "draft"}
 }
 
+async function emailCount(){
+    var emails = await storageService.query(STORAGE_KEY)
+    return emails.filter(mail => mail.isRead === false).length
+}
 
 function finalizeMail(draft){
     console.log("final",draft)
