@@ -39,8 +39,7 @@ export function EmailIndex() {
     }, [filterBy, clickChange])
 
     useEffect(() => {
-        console.log("compose save" , comMail)
-        saveDraft()
+        if( Object.keys(comMail).length !== 0) saveDraft()
     }, [comMail])
 
     // function onFilterBy(filterBy){
@@ -127,18 +126,15 @@ export function EmailIndex() {
     }
 
     async function onComposeFinish(com, email){
-        if(com === "edit") return setComposedMail(prev => ({...prev, ...email}))
-                    if(com === "close") {
-                        console.log("closed compose")
-                        await loadEmail()
-                        return setComposeChange(false)
-                    }
-            
-                    //on send
-                    await emailService.save(emailService.finalizeMail(email))
-                    setComposeChange(false)
+
+        if(com === "send") await emailService.save(emailService.finalizeMail(email))
+
+        await loadEmail()
+        setComposeChange(false)
     }
+
     async function saveDraft(){
+        console.log("saveeee",comMail)
         await emailService.save(comMail)
     }
     
