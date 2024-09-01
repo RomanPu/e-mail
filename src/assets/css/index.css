@@ -12,6 +12,7 @@
 /* Components */
 @import "./cmps/app-header.css";
 @import "./cmps/mail-list.css";
+@import "./cmps/compose.css";
 
 
 

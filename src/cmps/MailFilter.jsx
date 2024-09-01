@@ -1,9 +1,6 @@
 
 export function MailFilter({filterBy,onFilterBy}){
 
-    //const [ filterByToEdit, setFilterByToEdit ] = useState(filterBy)
-
-
     function handleChange({ target }) {
         const { name, value } = target;
         // console.log(name, value)
@@ -30,24 +27,4 @@ export function MailFilter({filterBy,onFilterBy}){
         <option value="unread">Unread</option>
       </select>
     </section>
-
-    
-//     return <section className="mail-filter">
-//     <label htmlFor="txt">search</label>
-//     <input 
-//         value={filterByToEdit.model} 
-//         onChange={handleChange}
-//         id="model" 
-//         name="model" 
-//         type="text" />
-    
-//     <label htmlFor="battery">Battery Status</label>
-//     <input 
-//         value={filterByToEdit.minBatteryStatus} 
-//         onChange={handleChange}
-//         id="battery" 
-//         name="minBatteryStatus" 
-//         type="number" />
-
-// </section>
 }

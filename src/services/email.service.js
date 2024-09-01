@@ -6,26 +6,40 @@ export const emailService = {
     save,
     remove,
     getById,
-    defoultFilter
+    defoultFilter,
+    newEmail,
+    finalizeMail
 }
 
 const STORAGE_KEY = 'emails'
 
-_createEmails()
+_createEmails() 
+
+function newEmail(){
+    return  { id:"", subject: '', body: "", isRead: false, isStarred: false, sentAt : null,
+        removedAt : null, from : "momo@shalomo.com", to: '', status : "draft"}
+}
+
+
+function finalizeMail(draft){
+    console.log("final",draft)
+    return {...draft, ["sentAt"]:new Date(), ["status"]:"sent"}
+}
 
 async function query(filterBy) {
     var emails = await storageService.query(STORAGE_KEY)
     if (filterBy) {
         // if (filterBy.status === "all") return emails
         //var  = filterBy.filter
-        console.log("service......" ,filterBy)
         var { folder , filter: { txt, readStatus}} = filterBy
-        
-        if (folder !== "all") emails = emails.filter(email => email.status === folder)
+
         if (readStatus !== "all") emails = emails.filter(email => email.isRead === 
             (readStatus === "read" ? true : false))
         if (txt)  emails = emails.filter(email => email.subject.toLowerCase().includes(txt.toLowerCase())
         || email.body.toLowerCase().includes(txt.toLowerCase()))
+        
+        if (folder === "starred") return emails = emails.filter(email => email.isStarred) 
+        if (folder !== "all") emails = emails.filter(email => email.status === folder)
 
         // var { type, maxBatteryStatus, minBatteryStatus, model } = filterBy
         // maxBatteryStatus = maxBatteryStatus || Infinity

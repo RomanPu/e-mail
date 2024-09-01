@@ -23,7 +23,7 @@ export function MailList({emails, handleClick}){
                     <img src={em.isStarred  ? imgFullStarUrl : imgEmptyStarUrl} alt="" /> </div>
 
                     <Link className = "entry-data" onClick=  {(ev) => handleClick(em.id, "deteils", ev)}
-                     to={`/EmailIndex/${em.id}`}>
+                     to={`/EmailIndex/Deteils/${em.id}`}>
                         <MailEntry email={em} handleEntryClick={handleClick}/>
                     </Link>
 
