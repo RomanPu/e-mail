@@ -9,7 +9,7 @@ import { utilService } from "../services/util.service"
 import imgUrl from '../assets/imgs/gmail-logo.jpg'
 
 
-import { useEffect, useState} from "react"
+import { useEffect, useState, useRef} from "react"
 import {useSearchParams } from "react-router-dom"
 
 
@@ -24,6 +24,7 @@ export function EmailIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [ filterBy, setFilterBy ] = useState(emailService.getFilterFromSearchParams(searchParams))
     const [count, setCount] = useState(0)
+    const saveDraftTout = useRef(null)
 
     async function loadEmail() {
         const t = await emailService.query(filterBy)
@@ -48,7 +49,10 @@ export function EmailIndex() {
     }, [filterBy])
 
     useEffect(() => {
-        if( Object.keys(comMail).length !== 0) saveDraft()
+        if( Object.keys(comMail).length !== 0){
+            clearTimeout(saveDraftTout.current)
+            saveDraftTout.current = setTimeout(saveDraft, 5000) 
+        } 
     }, [comMail])
 
     async function setCountFunc(){

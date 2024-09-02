@@ -26,5 +26,18 @@ export function MailFilter({filterBy,onFilterBy}){
         <option value="read">Read</option>
         <option value="unread">Unread</option>
       </select>
+      <select
+        value={filterBy.sortBy}
+        onChange={handleChange}
+        id="sortBy"
+        name="sortBy"
+      >
+        <option value="subject">subject</option>
+        <option value="sentAt">sentAt</option>
+        <option value="from">from </option>
+      </select>
     </section>
 }
+
+// return  { id:"", subject: '', body: "", isRead: false, isStarred: false, sentAt : null,
+//   removedAt : null, from : "momo@shalomo.com", to: '', status : "draft"}
