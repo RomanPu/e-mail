@@ -3,7 +3,7 @@ import { emailService } from "../services/email.service"
 import {useState , useEffect} from "react"
 
 
-export function Folders({filterBy, onFolderBy}){
+export function Folders({onFolderBy}){
     const navigate = useNavigate();
     const [count, setCount] = useState(0)
 

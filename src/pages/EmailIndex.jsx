@@ -4,22 +4,25 @@ import { MailFilter } from '../cmps/MailFilter'
 import { MailDeteils } from "./MailDeteils"
 import { Folders } from '../cmps/Folders'
 import { Compose } from '../cmps/compose'
+import { utilService } from "../services/util.service"
 
 import imgUrl from '../assets/imgs/gmail-logo.jpg'
 
 
 import { useEffect, useState} from "react"
+import {useSearchParams } from "react-router-dom"
 
 
 
 
 export function EmailIndex() {
     const [emails, setEmeils] = useState(null)
-    const [ filterBy, setFilterBy ] = useState(emailService.defoultFilter())
     const [ clickChange, setClickChange ] = useState(false)
     const [ mode, setModeChange ] = useState("list")
     const [ compose, setComposeChange ] = useState(false)
     const [ comMail, setComposedMail ] = useState({})
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [ filterBy, setFilterBy ] = useState(emailService.getFilterFromSearchParams(searchParams))
 
     async function loadEmail() {
         const t = await emailService.query(filterBy)
@@ -36,7 +39,13 @@ export function EmailIndex() {
     useEffect(() => {
         console.log("change")
         loadEmail()
-    }, [filterBy, clickChange])
+    }, [clickChange])
+
+    useEffect(() => {
+        console.log("change")
+        setSearchParams(utilService.getExistingProperties(filterBy))
+        loadEmail()
+    }, [filterBy])
 
     useEffect(() => {
         if( Object.keys(comMail).length !== 0) saveDraft()
@@ -60,7 +69,7 @@ export function EmailIndex() {
     
     function onFilterBy(filterBy){
         console.log("index", filterBy)
-        setFilterBy(prev => ({ ...prev, ["filter"]: filterBy }))
+        setFilterBy(prev => ({ ...prev, ...filterBy }))
         //setModeChange("list")
     }
 
@@ -145,8 +154,8 @@ export function EmailIndex() {
             <h1>gMail</h1>
             <button onClick={onCompose}>compose</button>
         </div>  
-        <MailFilter filterBy={filterBy.filter} onFilterBy={onFilterBy}/>
-        <Folders   filterBy={filterBy.folder} onFolderBy={onFolderBy}/>
+        <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
+        <Folders onFolderBy={onFolderBy}/>
         {compose && <Compose onFinish={onComposeFinish} onChange={onComposeChange} mail = {comMail}/>}
         <div className="mail-section">
             {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}

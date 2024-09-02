@@ -9,12 +9,23 @@ export const emailService = {
     defoultFilter,
     newEmail,
     finalizeMail,
-    emailCount
+    emailCount,
+    getFilterFromSearchParams
 }
 
 const STORAGE_KEY = 'emails'
 
 _createEmails() 
+
+function getFilterFromSearchParams(searchParams) {
+    const defaultFilter = defoultFilter()
+    const filterBy = {}
+    for (const field in defaultFilter) {
+        filterBy[field] = searchParams.get(field) || defaultFilter[field]
+    }
+
+    return filterBy
+}
 
 function newEmail(){
     return  { id:"", subject: '', body: "", isRead: false, isStarred: false, sentAt : null,
@@ -36,7 +47,7 @@ async function query(filterBy) {
     if (filterBy) {
         // if (filterBy.status === "all") return emails
         //var  = filterBy.filter
-        var { folder , filter: { txt, readStatus}} = filterBy
+        var { folder ,  txt, readStatus} = filterBy
 
         if (readStatus !== "all") emails = emails.filter(email => email.isRead === 
             (readStatus === "read" ? true : false))
@@ -58,7 +69,7 @@ async function query(filterBy) {
 }
 
 function defoultFilter(){
-    return {folder : "inbox", filter: {txt : "", readStatus : "all"}}
+    return {folder : "inbox", txt : "", readStatus : "all"}
 }
 
 function getById(id) {
