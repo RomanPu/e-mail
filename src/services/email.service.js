@@ -15,7 +15,8 @@ export const emailService = {
 
 const STORAGE_KEY = 'emails'
 
-_createEmails() 
+_createEmails()
+
 
 function getFilterFromSearchParams(searchParams) {
     const defaultFilter = defoultFilter()
@@ -34,7 +35,7 @@ function newEmail(){
 
 async function emailCount(){
     var emails = await storageService.query(STORAGE_KEY)
-    return emails.filter(mail => mail.isRead === false).length
+    return emails.filter(mail => mail.isRead === false && (mail.status === "inbox") ).length
 }
 
 function finalizeMail(draft){
@@ -45,9 +46,7 @@ function finalizeMail(draft){
 async function query(filterBy) {
     var emails = await storageService.query(STORAGE_KEY)
     if (filterBy) {
-        // if (filterBy.status === "all") return emails
-        //var  = filterBy.filter
-        var { folder ,  txt, readStatus} = filterBy
+        var { folder ,  txt, readStatus, sortBy} = filterBy
 
         if (readStatus !== "all") emails = emails.filter(email => email.isRead === 
             (readStatus === "read" ? true : false))
@@ -56,20 +55,26 @@ async function query(filterBy) {
         
         if (folder === "starred") return emails = emails.filter(email => email.isStarred) 
         if (folder !== "all") emails = emails.filter(email => email.status === folder)
-
-        // var { type, maxBatteryStatus, minBatteryStatus, model } = filterBy
-        // maxBatteryStatus = maxBatteryStatus || Infinity
-        // minBatteryStatus = minBatteryStatus || 0
-        // emails = emails.filter(email => email.type.toLowerCase().includes(type.toLowerCase()) && email.model.toLowerCase().includes(model.toLowerCase())
-        //     && (email.batteryStatus < maxBatteryStatus)
-        //     && email.batteryStatus > minBatteryStatus)
     }
+
+    function sortByFunc(a,b){
+        console.log("sort", a[sortBy])
+        if (a[sortBy] < b[sortBy] ) {
+            return -1;
+        } else if (a[sortBy] > b[sortBy]) {
+        return 1;
+        }
+          // a must be equal to b
+          return 0;
+    }
+
+    emails.sort(sortByFunc)
     console.log("service......" ,emails)
     return emails
 }
 
 function defoultFilter(){
-    return {folder : "inbox", txt : "", readStatus : "all"}
+    return {folder : "inbox", txt : "", readStatus : "all", sortBy: ""}
 }
 
 function getById(id) {
