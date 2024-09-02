@@ -23,17 +23,17 @@ export function EmailIndex() {
     const [ comMail, setComposedMail ] = useState({})
     const [searchParams, setSearchParams] = useSearchParams()
     const [ filterBy, setFilterBy ] = useState(emailService.getFilterFromSearchParams(searchParams))
+    const [count, setCount] = useState(0)
 
     async function loadEmail() {
         const t = await emailService.query(filterBy)
         console.log(t)
         setEmeils( t)
-       // console.log("load")
+        setCountFunc()
     }
 
     useEffect(  () =>  {
         setModeChange("list")
-        //loadEmail()
     },[])
 
     useEffect(() => {
@@ -51,15 +51,15 @@ export function EmailIndex() {
         if( Object.keys(comMail).length !== 0) saveDraft()
     }, [comMail])
 
-    // function onFilterBy(filterBy){
-    //     setFilterBy(filterBy)
-    // }
+    async function setCountFunc(){
+        const count = await emailService.emailCount()
+        console.log(count )
+        setCount(count )
+    }
+
+  
 
       function onFolderBy(filterBy){
-
-        //reset on folder change
-
-        
         let defoultFilter = emailService.defoultFilter()
         defoultFilter.folder = filterBy;
         console.log("folderBy",defoultFilter)
@@ -70,13 +70,10 @@ export function EmailIndex() {
     function onFilterBy(filterBy){
         console.log("index", filterBy)
         setFilterBy(prev => ({ ...prev, ...filterBy }))
-        //setModeChange("list")
     }
 
     function onHandleClick(id, action, ev){
-       // ev.stopPropagation()
         setAction(id, action)
-        // console.log("click",id, action)
     }
 
     async function setAction(id, action) { 
@@ -108,7 +105,6 @@ export function EmailIndex() {
                 })
             }
             else{
-                // console.log()
                 t.status = "trash"
                 await emailService.save(t)
                 if(action === "delete-from-deteils") setModeChange("list") 
@@ -155,7 +151,7 @@ export function EmailIndex() {
             <button onClick={onCompose}>compose</button>
         </div>  
         <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
-        <Folders onFolderBy={onFolderBy}/>
+        <Folders onFolderBy={onFolderBy} count= {count}/>
         {compose && <Compose onFinish={onComposeFinish} onChange={onComposeChange} mail = {comMail}/>}
         <div className="mail-section">
             {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}
