@@ -152,10 +152,12 @@ export function EmailIndex() {
         <div className="logo">           
             <img src={imgUrl} alt="" />
             <h1>gMail</h1>
-            <button onClick={onCompose}>compose</button>
         </div>  
         <MailFilter filterBy={filterBy} onFilterBy={onFilterBy}/>
-        <Folders onFolderBy={onFolderBy} count= {count}/>
+        <section className="sideBar">
+            <button onClick={onCompose}>compose</button>
+            <Folders onFolderBy={onFolderBy} count= {count}/>
+        </section>
         {compose && <Compose onFinish={onComposeFinish} onChange={onComposeChange} mail = {comMail}/>}
         <div className="mail-section">
             {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}

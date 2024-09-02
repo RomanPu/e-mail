@@ -10,10 +10,10 @@ export function Folders({onFolderBy, count}){
         onFolderBy(cat)
         navigate(`/EmailIndex/${cat}`);
     }
-    
+
     return< section className="folders">
-                <button onClick = {() =>onCategorySelect("all")}>all</button><span>{count}</span>
-                <button onClick = {() => onCategorySelect("inbox")}>inbox</button>
+                <button onClick = {() =>onCategorySelect("all")}>all</button>
+                <button onClick = {() => onCategorySelect("inbox")}>inbox<span>{`   ${count}`}</span></button>
                 <button onClick = {() =>onCategorySelect("sent")}>sent</button>
                 <button onClick = {() =>onCategorySelect("starred")}>starred</button>
                 <button onClick = {() =>onCategorySelect("trash")}>trash</button>
