@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import { Await } from 'react-router-dom';
 // import { useEffect, useState} from "react"
 
-const API_KEY = 'AIzaSyDeUPhJUrN1HRo9DhKdyikl0snGjEdigVQ'
+const API_KEY = ''
 
 
 
