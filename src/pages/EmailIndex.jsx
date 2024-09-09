@@ -4,6 +4,7 @@ import { MailFilter } from '../cmps/MailFilter'
 import { MailDeteils } from "./MailDeteils"
 import { Folders } from '../cmps/Folders'
 import { Compose } from '../cmps/compose'
+import { CurrLocMap } from '../cmps/CurrLocMap'
 import { utilService } from "../services/util.service"
 
 import imgUrl from '../assets/imgs/gmail-logo.jpg'
@@ -51,7 +52,7 @@ export function EmailIndex() {
     useEffect(() => {
         if( Object.keys(comMail).length !== 0){
             clearTimeout(saveDraftTout.current)
-            saveDraftTout.current = setTimeout(saveDraft, 5000) 
+            saveDraftTout.current = setTimeout(saveDraft, 1000) 
         } 
     }, [comMail])
 
@@ -134,6 +135,11 @@ export function EmailIndex() {
        setComposedMail(prev => ({...prev, ...email}))
     }
 
+    async function onLoc(email){
+        setComposedMail(prev => ({...prev, ...email}))
+     }
+ 
+
     async function onComposeFinish(com, email){
 
         if(com === "send") await emailService.save(emailService.finalizeMail(email))
@@ -158,7 +164,8 @@ export function EmailIndex() {
             <button onClick={onCompose}>compose</button>
             <Folders onFolderBy={onFolderBy} count= {count}/>
         </section>
-        {compose && <Compose onFinish={onComposeFinish} onChange={onComposeChange} mail = {comMail}/>}
+        {compose && <Compose onFinish={onComposeFinish} onChange={onComposeChange} mail = {comMail}
+        onLoc = {onLoc}/>}
         <div className="mail-section">
             {mode === "list" && <MailList emails={emails} handleClick={onHandleClick} />}
             {mode === "deteils" && <MailDeteils handleClick={onHandleClick}/>}

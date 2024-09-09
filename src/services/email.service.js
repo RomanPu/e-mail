@@ -30,7 +30,8 @@ function getFilterFromSearchParams(searchParams) {
 
 function newEmail(){
     return  { id:"", subject: '', body: "", isRead: false, isStarred: false, sentAt : null,
-        removedAt : null, from : "momo@shalomo.com", to: '', status : "draft"}
+        removedAt : null, from : "momo@shalomo.com", to: '', status : "draft", isLocOn: false,
+    latLong: {}}
 }
 
 async function emailCount(){

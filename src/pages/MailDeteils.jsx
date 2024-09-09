@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { CurrLocMap } from '../cmps/CurrLocMap'
 
 // import { robotService } from "../services/robot.service"
 // import { Link } from "react-router-dom"
@@ -51,6 +52,7 @@ export function MailDeteils({handleClick}){
            <span>{deteils.from}</span>
            {/* <span>{`${months[d.getMonth()]} ${d.getDay()}`}</span> */}
         </div>
+        {deteils.isLocOn && <CurrLocMap lat = {deteils.latLong.lat} long = {deteils.latLong.lng}/>}
         
         <div className="mail-body">{deteils.body}</div>
         
