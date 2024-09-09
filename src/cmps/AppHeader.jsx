@@ -5,7 +5,7 @@ export function AppHeader() {
         <h1>we mail</h1>
         <nav>
             <NavLink to="/" >Home</NavLink>
-            <NavLink to="/about" >About</NavLink>
+            <NavLink to="/Stats" >Stats</NavLink>
             <NavLink to="/EmailIndex" >Index</NavLink>
         </nav>
     </header>

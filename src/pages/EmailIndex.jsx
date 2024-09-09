@@ -142,6 +142,7 @@ export function EmailIndex() {
 
     async function onComposeFinish(com, email){
 
+        
         if(com === "send") await emailService.save(emailService.finalizeMail(email))
 
         await loadEmail()

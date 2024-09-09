@@ -10,12 +10,22 @@ export const emailService = {
     newEmail,
     finalizeMail,
     emailCount,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    countStatusTypes
 }
 
 const STORAGE_KEY = 'emails'
 
 _createEmails()
+
+async function countStatusTypes() {
+    var emails = await storageService.query(STORAGE_KEY)
+    return emails.reduce((total, mail) =>{ 
+        total[mail.status]++
+       return total 
+    }
+    ,{inbox: 0, sent: 0, draft: 0, trash: 0,})
+}
 
 
 function getFilterFromSearchParams(searchParams) {

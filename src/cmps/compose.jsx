@@ -37,6 +37,7 @@ export function Compose({onFinish, onChange, mail, onLoc}){
         <div className="compose-modal-header">
           <h2>New Message</h2>
           <button className="close-button" onClick={() => onClicked("close")}>X</button>
+          <button className="close-button" onClick={() => onClicked("close")}>X</button>
         </div>
         <div className="compose-modal-body">
           <input type="text" onChange={handleChange} value={mail.to} placeholder="To" name ="to" className="compose-input" />
